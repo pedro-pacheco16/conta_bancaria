@@ -34,7 +34,7 @@
 
                 opcao = Convert.ToInt32(Console.ReadLine());
 
-                if(opcao == 9)
+                if (opcao == 9)
                 {
                     Console.WriteLine("\nBanco doBrasil com Z - O seu Futuro começa aqui!");
                     sobre();
@@ -84,7 +84,7 @@
                         break;
                 }
             }
-
+        }
                   static void sobre()
             {
                 Console.WriteLine("\n************************************************************************");
@@ -109,6 +109,6 @@
 
 
 
-        }
+        
     }
 }
