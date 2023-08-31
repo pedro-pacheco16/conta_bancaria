@@ -1,11 +1,29 @@
-﻿namespace Banco
+﻿using Banco.Model;
+using System;
+
+namespace Banco
 {
     internal class Program
     {
+            private static ConsoleKeyInfo consoleKeyInfo;
+
         static void Main(string[] args)
         {
 
+
             int opcao;
+
+            conta c1 = new conta(1, 123, 1, "Pedro", 1000000.00M);
+
+            c1.SetTipo(2);
+            c1.Visualizar();
+            c1.SetAgencia(457);
+            c1.Visualizar();
+
+            c1.Sacar(10000);
+            c1.Visualizar();
+
+            c1.Depositar(20000);
 
             while (true)
             {
@@ -45,34 +63,50 @@
                 {
                     case 1:
                         Console.WriteLine("Criar Conta\n\n");
+
+                        KeyPress();
                         break;
 
                     case 2:
                         Console.WriteLine("Listar todas as Contas\n\n");
+
+                        KeyPress();
                         break;
 
                     case 3:
                         Console.WriteLine("Buscar Conta por Numero\n\n");
+
+                        KeyPress();
                         break;
 
                     case 4:
                         Console.WriteLine("Atualizar Dados da Conta\n\n");
+
+                        KeyPress();
                         break;
 
                     case 5:
                         Console.WriteLine("Apagar Conta\n\n");
+
+                        KeyPress();
                         break;
 
                     case 6:
                         Console.WriteLine("Sacar\n\n");
+
+                        KeyPress();
                         break;
 
                     case 7:
                         Console.WriteLine("Depositar\n\n");
+
+                        KeyPress();
                         break;
 
                     case 8:
                         Console.WriteLine("Transferir valores entre Contas\n\n");
+
+                        KeyPress();
                         break;
 
                     case 9:
@@ -86,29 +120,23 @@
             }
         }
                   static void sobre()
-            {
-                Console.WriteLine("\n************************************************************************");
-                Console.WriteLine("Projeto Desenvolvido por: Pedro");
-                Console.WriteLine("Pedro Augusto Pacheco de Souza Santos - pedroaugustopacheco16@gmail.com");
-                Console.WriteLine("github.com/pedro-pacheco16");
-                Console.WriteLine("************************************************************************");
+                  {
+                     Console.WriteLine("\n************************************************************************");
+                     Console.WriteLine("Projeto Desenvolvido por: Pedro");
+                     Console.WriteLine("Pedro Augusto Pacheco de Souza Santos - pedroaugustopacheco16@gmail.com");
+                     Console.WriteLine("github.com/pedro-pacheco16");
+                     Console.WriteLine("************************************************************************");
 
-            }
+                  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    }
+                  static void KeyPress()
+                  {
+                  do
+                  {
+                     Console.Write("\nPressione Enter para Continuar...\"");
+                     consoleKeyInfo = Console.ReadKey();
+                  }  while (consoleKeyInfo.Key != ConsoleKey.Enter);
+                  }
+     
+    }        
 }
