@@ -8,12 +8,14 @@ namespace Banco.Model
 {
     public class conta
     {
+        //Atributos
         private int numero;
         private int agencia;
         private int tipo;
         private string titular = string.Empty;
         private decimal saldo;
 
+        //método Construtor
         public conta(int numero, int agencia, int tipo, string titular, decimal saldo)
         {
             this.numero = numero;
@@ -23,6 +25,10 @@ namespace Banco.Model
             this.saldo = saldo;
         }
 
+        //Polimosfismo de Sobrecarga
+        public conta() { }
+
+        /* métodos Get e Set*/
         public int GetNumero()
         {
             return numero;
@@ -73,7 +79,7 @@ namespace Banco.Model
             this.saldo = saldo;
         }
 
-        public bool Sacar(decimal valor)
+        public virtual bool Sacar(decimal valor)
         {
 
             if (this.GetSaldo() < valor)
@@ -91,7 +97,7 @@ namespace Banco.Model
             this.SetSaldo(this.saldo + valor);
         }
 
-        public void Visualizar()
+        public virtual void Visualizar()
         {
 
             string tipo = string.Empty;

@@ -1,5 +1,7 @@
 ﻿using Banco.Model;
 using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.ComponentModel;
 
 namespace Banco
 {
@@ -14,7 +16,7 @@ namespace Banco
             int opcao;
 
             conta c1 = new conta(1, 123, 1, "Pedro", 1000000.00M);
-
+            /*
             c1.SetTipo(2);
             c1.Visualizar();
             c1.SetAgencia(457);
@@ -23,7 +25,15 @@ namespace Banco
             c1.Sacar(10000);
             c1.Visualizar();
 
-            c1.Depositar(20000);
+            c1.Depositar(20000);*/
+
+            ContaCorrente cc1 = new ContaCorrente(3, 457, 1, "Pedro", 1000, 500);
+
+            cc1.Sacar(2000);
+            cc1.Visualizar();
+
+            ContaPpoupanca Cp = new ContaPpoupanca(5, 789, 2, "pacheco", 2000, 16);
+            Cp.Visualizar();
 
             while (true)
             {
