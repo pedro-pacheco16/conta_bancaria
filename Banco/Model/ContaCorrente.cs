@@ -8,14 +8,14 @@ namespace Banco.Model
 {
     public class ContaCorrente : conta
     {
-        private int limite;
+        private decimal limite;
 
-        public ContaCorrente(int numero, int agencia, int tipo, string titular, decimal saldo,int limite) : base(numero, agencia, tipo, titular, saldo)
+        public ContaCorrente(int numero, int agencia, int tipo, string titular, decimal saldo,decimal limite) : base(numero, agencia, tipo, titular, saldo)
         {
             this.limite = limite;
         }
 
-        public int GetLimite()
+        public decimal GetLimite()
         {
             return limite;
         }

@@ -2,38 +2,31 @@
 using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.ComponentModel;
+using Banco.Controller;
+using System.Runtime.CompilerServices;
 
 namespace Banco
 {
-    internal class Program
+    public class Program
     {
-            private static ConsoleKeyInfo consoleKeyInfo;
+        private static ConsoleKeyInfo consoleKeyInfo;
 
         static void Main(string[] args)
         {
 
+            int opcao, agencia, tipo, aniversario;
 
-            int opcao;
+            string? titular;
 
-            conta c1 = new conta(1, 123, 1, "Pedro", 1000000.00M);
-            /*
-            c1.SetTipo(2);
-            c1.Visualizar();
-            c1.SetAgencia(457);
-            c1.Visualizar();
+            decimal saldo, limite;
 
-            c1.Sacar(10000);
-            c1.Visualizar();
+            ContaController contas = new();
 
-            c1.Depositar(20000);*/
 
-            ContaCorrente cc1 = new ContaCorrente(3, 457, 1, "Pedro", 1000, 500);
+            ContaCorrente cc1 = new ContaCorrente(contas.GerarNumeros(), 123, 1, "Pedro", 1000, 500);
+            contas.Cadastrar(cc1);
 
-            cc1.Sacar(2000);
-            cc1.Visualizar();
-
-            ContaPpoupanca Cp = new ContaPpoupanca(5, 789, 2, "pacheco", 2000, 16);
-            Cp.Visualizar();
+            ContaPpoupanca cp1 = new ContaPpoupanca(contas.GerarNumeros(), 123, 2, "luiz", 10000, 10);
 
             while (true)
             {
@@ -74,11 +67,65 @@ namespace Banco
                     case 1:
                         Console.WriteLine("Criar Conta\n\n");
 
+                        Console.WriteLine("Digite o Número da Agência: ");
+                        agencia = Convert.ToInt32(Console.ReadLine());
+
+                        Console.WriteLine("Digite o Nome do Ttitular: ");
+                        titular = Console.ReadLine();
+
+                        titular ??= string.Empty;
+                        do
+                        {
+
+
+
+                            Console.WriteLine("Digite o tipo da Conta: ");
+                            tipo = Convert.ToInt32(Console.ReadLine());
+
+                        }
+                        while (tipo != 1 && tipo != 2);
+
+                        Console.WriteLine("Digite o saldo: ");
+                        saldo = Convert.ToDecimal(Console.ReadLine());
+
+
+                        switch (tipo)
+                        {
+                            case 1:
+
+                                
+
+                                Console.WriteLine("Digite o Limite da Conta: ");
+                                limite = Convert.ToDecimal(Console.ReadLine());
+
+
+                                contas.Cadastrar(new ContaCorrente(contas.GerarNumeros(), agencia, tipo, titular, saldo, limite));
+
+                                break;
+
+
+                            case 2:
+
+
+
+                                Console.WriteLine("Digite o Aniversário da Conta: ");
+                                aniversario = Convert.ToInt32(Console.ReadLine());
+
+
+                                
+
+                                KeyPress();
+                                break;
+
+
+                        }
                         KeyPress();
                         break;
 
                     case 2:
                         Console.WriteLine("Listar todas as Contas\n\n");
+
+                        contas.ListarTodas();
 
                         KeyPress();
                         break;
@@ -129,24 +176,24 @@ namespace Banco
                 }
             }
         }
-                  static void sobre()
-                  {
-                     Console.WriteLine("\n************************************************************************");
-                     Console.WriteLine("Projeto Desenvolvido por: Pedro");
-                     Console.WriteLine("Pedro Augusto Pacheco de Souza Santos - pedroaugustopacheco16@gmail.com");
-                     Console.WriteLine("github.com/pedro-pacheco16");
-                     Console.WriteLine("************************************************************************");
+        static void sobre()
+        {
+            Console.WriteLine("\n************************************************************************");
+            Console.WriteLine("Projeto Desenvolvido por: Pedro");
+            Console.WriteLine("Pedro Augusto Pacheco de Souza Santos - pedroaugustopacheco16@gmail.com");
+            Console.WriteLine("github.com/pedro-pacheco16");
+            Console.WriteLine("************************************************************************");
 
-                  }
+        }
 
-                  static void KeyPress()
-                  {
-                  do
-                  {
-                     Console.Write("\nPressione Enter para Continuar...\"");
-                     consoleKeyInfo = Console.ReadKey();
-                  }  while (consoleKeyInfo.Key != ConsoleKey.Enter);
-                  }
-     
-    }        
+        static void KeyPress()
+        {
+            do
+            {
+                Console.Write("\nPressione Enter para Continuar...\"");
+                consoleKeyInfo = Console.ReadKey();
+            } while (consoleKeyInfo.Key != ConsoleKey.Enter);
+        }
+
+    }
 }
