@@ -16,7 +16,23 @@ namespace Banco.Controller
         //métodos do Crud
         public void Atualizar(conta conta)
         {
-            throw new NotImplementedException();
+            var buscaConta = BuscarNaCollection(conta.GetNumero());
+
+            if(buscaConta is not null)
+            {
+                var index = listaContas.IndexOf(buscaConta);
+
+                listaContas[index] = conta;
+
+                Console.WriteLine($"A conta número {conta.GetNumero()} foi atualizada com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine($"A conta número {numero} não foi encontrada!");
+                numero = Convert.ToInt32(Console.ReadLine());
+
+            }
+            
         }
 
         public void Cadastrar(conta conta)
@@ -27,7 +43,21 @@ namespace Banco.Controller
 
         public void Deletar(int numero)
         {
-            throw new NotImplementedException();
+            var conta = BuscarNaCollection(numero);
+
+            if (conta is not null)
+            {
+                if (listaContas.Remove(conta) == true)
+                Console.WriteLine($"A conta {numero} foi apagada com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine($"A conta número {numero} não foi encontrada!");
+                numero = Convert.ToInt32(Console.ReadLine());
+
+
+            }
+           
         }
 
         public void ListarTodas()
@@ -40,7 +70,16 @@ namespace Banco.Controller
 
         public void ProcurarPorNumero(int numero)
         {
-            throw new NotImplementedException();
+            var conta = BuscarNaCollection(numero);
+
+            if (conta is not null)
+                conta.Visualizar();
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"A conta numero {numero} não foi encontrada!");
+                Console.ResetColor();
+            }
         }
 
         //métodos Bancários
@@ -66,5 +105,18 @@ namespace Banco.Controller
             return ++numero;
         }
 
+        //método para buscar um Objeto Conta especifico 
+        public conta? BuscarNaCollection(int numero)
+        {
+            foreach(var conta in listaContas)
+            {
+                if (conta.GetNumero() == numero)
+                {
+                    return conta;
+                }
+                  
+            }
+            return null;
+        }
     }
 }
